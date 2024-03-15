@@ -22,12 +22,12 @@ public class CourseMaterialController {
     @GetMapping("/{courseId}/materials")
     public ResponseEntity<List<CourseMaterial>> getCourseMaterials(@PathVariable Long courseId){
         List<CourseMaterial> courseMaterials = courseMaterialService.getCourseMaterials(courseId);
-        return ResponseEntity.status(HttpStatus.OK).body(courseMaterials);
+        return ResponseEntity.ok(courseMaterials);
     }
     @GetMapping("/{courseId}/materials/{materialId}")
     public ResponseEntity<CourseMaterial> getCourseMaterialById(@PathVariable Long courseId,@PathVariable Long materialId){
         CourseMaterial courseMaterial = courseMaterialService.getCourseMaterial(materialId);
-        return ResponseEntity.status(HttpStatus.OK).body(courseMaterial);
+        return ResponseEntity.ok(courseMaterial);
     }
 
 
