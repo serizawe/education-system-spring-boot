@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private final UserService userService;
-
     @GetMapping("/{id}")
-    public @ResponseBody ResponseEntity<User> getUser(@PathVariable Long id){
+    public ResponseEntity<User> getUser(@PathVariable Long id){
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 
-    @PostMapping("")
-    public @ResponseBody ResponseEntity<User> createUser(@PathVariable User user){
+    @PostMapping("/sign-up")
+    public  ResponseEntity<User> createUser(@PathVariable User user){
         User newUser = userService.createUser(user);
         return new ResponseEntity<>(newUser,HttpStatus.OK);
     }
+
 
 
 }

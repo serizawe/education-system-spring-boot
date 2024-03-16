@@ -16,6 +16,8 @@ public class User {
     private String username;
     private String email;
     private String password;
+
+    @Enumerated(EnumType.STRING)
     private String role;
 
     @OneToMany(mappedBy = "instructor",cascade = CascadeType.ALL,orphanRemoval = true)
