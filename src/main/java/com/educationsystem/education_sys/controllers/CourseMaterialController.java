@@ -1,5 +1,6 @@
 package com.educationsystem.education_sys.controllers;
 
+import com.educationsystem.education_sys.Services.AuthService;
 import com.educationsystem.education_sys.Services.CourseMaterialService;
 import com.educationsystem.education_sys.model.Course;
 import com.educationsystem.education_sys.model.CourseMaterial;
@@ -16,7 +17,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("api/courses")
 public class CourseMaterialController {
-    @Autowired
     private final CourseMaterialService courseMaterialService;
 
     @GetMapping("/{courseId}/materials")
@@ -29,6 +29,28 @@ public class CourseMaterialController {
         CourseMaterial courseMaterial = courseMaterialService.getCourseMaterial(materialId);
         return ResponseEntity.ok(courseMaterial);
     }
+
+    @DeleteMapping("/{courseId}/materials/{materialId}")
+    public ResponseEntity<String> deleteCourseMaterialById(@PathVariable Long courseId, @PathVariable Long materialId) {
+        try {
+            courseMaterialService.deleteCourseMaterialById(materialId);
+            return ResponseEntity.ok("Course material deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting course material: " + e.getMessage());
+        }
+    }
+    @PutMapping("/{courseId}/materials/{materialId}")
+    public ResponseEntity<String> updateCourseMaterialById(@PathVariable Long courseId, @PathVariable Long materialId, @RequestBody CourseMaterial updatedMaterial) {
+        try {
+            CourseMaterial result = courseMaterialService.updateCourseMaterialById(materialId, updatedMaterial);
+            return ResponseEntity.ok("Course material updated successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating course material: " + e.getMessage());
+        }
+    }
+
+
+
 
 
 
