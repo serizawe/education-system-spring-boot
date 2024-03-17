@@ -9,16 +9,17 @@ import lombok.Data;
 @Data
 public class Enrollment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long enrollmentId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, updatable = false)
+    private String enrollmentId;
 
     @OneToOne
-    @JoinColumn(name = "student_id",referencedColumnName = "id")
+    @JoinColumn(name = "student_id",referencedColumnName = "userId")
     User student;
 
 
     @OneToOne
-    @JoinColumn(name = "course_id",referencedColumnName = "id")
+    @JoinColumn(name = "course_id",referencedColumnName = "courseId")
     Course course;
 
 }

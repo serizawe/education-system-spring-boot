@@ -12,11 +12,12 @@ import java.util.List;
 @Data
 public class Course {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long courseId;
+  @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(nullable = false, updatable = false)
+  private String courseId;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "instructor_id",referencedColumnName = "id")
+  @JoinColumn(name = "instructor_id",referencedColumnName = "userId")
   private User instructor;
 
   private String name;

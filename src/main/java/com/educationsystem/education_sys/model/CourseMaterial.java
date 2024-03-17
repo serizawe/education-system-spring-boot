@@ -8,8 +8,9 @@ import lombok.Data;
 @Data
 public class CourseMaterial {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long materialId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, updatable = false)
+    private String materialId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id",referencedColumnName = "courseId")
